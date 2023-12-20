@@ -3,10 +3,10 @@ from flask import (
     redirect,
     render_template,
     request,
-    url_for,
+    url_for
 )
 
-from database import get_db
+from board.database import get_db
 
 bp = Blueprint("posts", __name__)
 
@@ -33,7 +33,7 @@ def create():
 def posts():
     db = get_db()
     posts = db.execute(
-        "SELECT author, message, created FROM posts ORDER BY created DESC"
+        "SELECT author, message, created FROM post ORDER BY created DESC"
     ).fetchall()
     return render_template("posts/posts.html", posts=posts)
 
